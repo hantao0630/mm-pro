@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/my.css" />
+	</head>
+	<style type="text/css">
+		li {
+			list-style: none;
+		}
+
+		#mui-header-text img {
+			transform: scale(0.7);
+			float: left;
+		}
+
+		#mui-header-text span {
+			float: left;
+			line-height: 4rem;
+			font-weight: 500;
+			font-family: "arial rounded mt bold";
+		}
+
+		.mui-table-view li img {
+			float: left;
+		}
+
+		#image {
+			text-align: center;
+		}
+
+		#image1 {
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			margin-bottom: 0.4rem;
+			margin-top: 0.4rem;
+		}
+
+		#image1 img {
+			width: 90%;
+			height: 90%;
+		}
+	</style>
+	<body>
+         <!--头部 mheader
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">我的</h1>
+		</header> -->
+
+		<!-- 主体部分 -->
+		<div class="mui-content">
+			<!-- 注册 登录 -->
+			<div id="mui-header">
+				<div id="mui-header-text">
+					<img src="../../images/denglu.png">
+					<span>登录/注册</span>
+				</div>
+			</div>
+			<div id="image">
+			</div>
+			<div id="image1" class="ht_three">
+				<img src="../../images/fenxiang1.png">
+			</div>
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 列表 mlis -->
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell ht_two">
+				<img src="../../images/geren.png">
+				<a class="mui-navigate-right">
+					我的信息
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../images/shalou.png">
+				<a class="mui-navigate-right">
+					过期商品
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../images/ren23.png">
+				<a class="mui-navigate-right">
+					我关注过的买手
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../images/shi.png">
+				<a class="mui-navigate-right">
+					我看过的
+				</a>
+			</li>
+		</ul>
+
+		<ul class="mui-table-view" style="margin-top: 0.8rem;">
+
+			<li class="mui-table-view-cell"><img src="../../images/shezhi.png">
+				<a class="mui-navigate-right">
+					设置
+				</a>
+			</li>
+			<li class="mui-table-view-cell ht_one">
+				<img src="../../images/kefu.png">
+				<a class="mui-navigate-right">
+					联系客服
+				</a>
+
+			</li>
+		</ul>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/network.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			//获取当前文档中轮播图组件对象
+			var sliderObj = mui("#slider");
+			sliderObj.slider({
+				interval: 1000
+			})
+		</script>
+		<script type="text/javascript">
+			var images = document.getElementById("image")
+			request({
+				"_gp": "advertisement",
+				"_mt": "getAd"
+			}, "get", function(data) {
+				console.log(data.data.imgUrl)
+				var str = `
+				<img src=` + data.data.imgUrl + `>
+				`
+				images.innerHTML = str
+			})
+			
+			
+			var ht_one=document.documentElement.getElementsByClassName("ht_one")[0];
+			ht_one.onclick = function(){
+				mui.openWindow({
+					url:"../../views/my/service.html",
+					id:"infoview",
+				})
+			}
+			
+			var ht_two=document.documentElement.getElementsByClassName("ht_two")[0];
+			ht_two.onclick = function(){
+				mui.openWindow({
+					url:"../../views/my/information.html",
+					id:"infoview",
+				})
+			}
+			
+			var ht_three=document.documentElement.getElementsByClassName("ht_three")[0];
+			ht_three.onclick = function(){
+				mui.openWindow({
+					url:"../../views/my/share.html",
+					id:"infoview",
+				})
+			}
+		</script>
+	</body>
+
+</html>
