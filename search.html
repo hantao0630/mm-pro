@@ -1,0 +1,409 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./css/home.css" />
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="mui-row">
+				<div class="mui-col-sm-1 mui-col-xs-1">
+					<li class="mui-table-view-cell">
+						<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+					</li>
+				</div>
+				<div class="mui-col-sm-10  mui-col-xs-10">
+					<li class="mui-table-view-cell search_frame">
+						<div class="search">
+							<input type="text" placeholder="搜索您要查找的商品" id="msg" />
+						</div>
+					</li>
+				</div>
+				<div class="mui-col-sm-1  mui-col-xs-1">
+					<li class="mui-table-view-cell search_text">
+						<div class="search_right" id="btn">
+							<span>
+								搜索
+							</span>
+						</div>
+					</li>
+				</div>
+			</div>
+			<div class="mui-row">
+				<li class="mui-table-view-cell  search_text" style="padding-left: 0.2rem;">
+					<div class="search_condition ">
+						<img src="../../images/sousuo.png">
+						<span>搜索条件 </span>
+					</div>
+
+				</li>
+				<li class="mui-table-view-cell  search_text" style="padding-left: 0.2rem;">
+					<div class="biaoqian">
+						<ul id="pro">
+					
+						</ul>
+					</div>
+
+				</li>
+			</div>
+			<div class="mui-row" id="list">
+				<!-- <li class="mui-table-view-cell ">
+					<div class="list">
+						<div class="list_top">
+							<div class="list_top_left">
+								<img src="../../images/lujingbeifen2.png">
+								<span>
+									最新上架
+								</span>
+							</div>
+							<div class="list_top_right">
+								<img src="../../images/lujingbeifen2.png">
+								<span>
+									11天 2:31:44
+								</span>
+							</div>
+						</div>
+						<div class="list_matter">
+							<div class="list_matter_left">
+								<img src="https://dudu-edu1.oss-cn-beijing.aliyuncs.com/bg/566c22f0ba654a4ab28b15c347516e5a.jpeg">
+							</div>
+							<div class="list_matter_right">
+								<div class="list_matter_right_top">
+									<span>
+										[拼多多]
+									</span>
+									<span>
+										【包邮】【限时特价】新鲜水果山东烟台栖霞红富士冰糖心苹果3斤5斤不打蜡
+									</span>
+
+								</div>
+								<div class="list_matter_right_matter">
+									<span>
+										原价 ￥15.8
+									</span>
+								</div>
+								<div class="list_matter_right_bottom">
+									<span>
+										￥9.80
+									</span>
+									<span>
+										已售<span></span>件
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="list_remark">
+							<span>
+								推荐点评：<span>又脆又甜 好吃滴</span>
+							</span>
+							<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-right"></a>
+						</div>
+						<div class="list_recommend">
+							<span>
+								推荐买手：<span>水果大神</span>
+							</span>
+						</div>
+					</div>
+				</li> -->
+			</div>
+		
+
+		</div>
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/network.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+
+		<script type="text/javascript">
+			var pro = document.getElementById("pro")
+			request({
+				_gp: "mmindex",
+				_mt: "priceTagList"
+			}, "get", function(data) {
+				var result = data.data
+				var domstr = "";
+				for (var i = 0; i < result.length; i++) {
+					domstr +=
+						`
+				    <li>
+					    <a>` + result[i].tagName + `</a>
+					</li>
+				    `
+				}
+				pro.innerHTML = domstr;
+				var pros = pro.children;
+				pros[0].className = "ac"
+				for (var i = 0; i < pros.length; i++) {
+					pros[i].index = i;
+					pros[i].onclick = function() {
+						for (var j = 0; j < pros.length; j++) {
+							pros[j].className = ""
+						}
+						this.className = "ac"
+					}
+				}
+			})
+
+			request({
+				"_gp": "mmindex",
+				"_mt": "getGoodsPage"
+			}, "get", function(data) {
+				var result = data.data.records
+				console.log(result[0].buyUserId)
+				var domStr = ""
+				for (var i = 0; i < result.length; i++) {
+					var buyUserName = result[i].buyUserName || ""
+					console.log(buyUserId)
+					domStr +=
+						`
+						<li class="mui-table-view-cell ">
+							<div class="list">
+								<div class="list_top">
+									<div class="list_top_left">		
+															<img src="../../images/rementuijian.png">
+										<span>
+											` +
+						result[i].goodsTagName +
+						`
+										</span>
+									</div>
+									<div class="list_top_right">
+										<img src="../../images/lishijilu.png">
+										<span id="showtime"  class="show" >
+										<span></span>
+										<span></span>
+										<span></span>
+										<span></span>
+										</span>
+									</div>
+								</div>
+								<div class="list_matter">
+									<div class="list_matter_left">
+										<img src=` +
+						result[i].goodsPicUrl +
+						`>
+									</div>
+									<div class="list_matter_right">
+										<div class="list_matter_right_top">
+											<span style="color:#EF8F34">
+												[` +
+						result[i].platformName + `]
+											</span>
+											<span>
+												` + result[i].name +
+						`
+											</span>
+						
+										</div>
+										<div class="list_matter_right_matter">
+											<span>
+												原价 ￥` +
+						result[i].originalPrice +
+						`
+											</span>
+										</div>
+										<div class="list_matter_right_bottom">
+											<span>
+												￥` +
+						result[i].price +
+						`
+											</span>
+											<span class="soldout">
+												已售<span>` + result[i].saleNumStr +
+						`</span>件
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="list_remark">
+									<span>
+										推荐点评：<span>` +
+						result[i].buyUserRating +
+						`</span>
+									</span>
+									<span class="mui-icon mui-icon-arrowright"></span>
+								</div>
+								<div class="list_recommend">
+									<span>
+										推荐买手：<span>` +
+						buyUserName + `</span>
+									</span>
+								</div>
+							</div>
+						</li>
+					 `
+				}
+				list.innerHTML = domStr
+
+				for (var i = 0; i < list.children.length; i++) {
+					var show = list.children[i].getElementsByClassName("show")[0]
+					dao(show)
+				}
+			})
+		</script>
+		<script type="text/javascript">
+			var msg = document.getElementById("msg")
+			var search = document.getElementById("btn")
+			var list = document.getElementById("list")
+
+			search.onclick = function() {
+				submit()
+			}
+            
+			//键盘事件
+			document.onkeydown = function(e) { // 回车提交表单
+				var theEvent = window.event || e;
+				var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+				if (code == 13) {
+					submit()
+				}
+			}
+
+			function submit() {
+				request({
+					"_gp": "mmindex",
+					"_mt": "getGoodsPage",
+					"name": msg.value
+				}, "get", function(data) {
+					var result = data.data.records
+					// console.log(result)
+					var domStr = ""
+					for (var i = 0; i < result.length; i++) {
+						var buyUserName = result[i].buyUserName || ""
+						var buyUserId =result[i].buyUserId
+						domStr +=
+							`
+					<li class="mui-table-view-cell ">
+						<div class="list">
+							<div class="list_top">
+								<div class="list_top_left">	
+								<img src="../../images/rementuijian.png">
+									<span>
+										` +
+							result[i].goodsTagName +
+							`
+									</span>
+								</div>
+								<div class="list_top_right">
+									<img src="../../images/lishijilu.png">
+									<span id="showtime"  class="show">
+										<span></span>
+										<span></span>
+										<span></span>
+										<span></span>
+									</span>
+								</div>
+							</div>
+							<div class="list_matter">
+								<div class="list_matter_left">
+									<img src=` +
+							result[i].goodsPicUrl +
+							`>
+								</div>
+								<div class="list_matter_right">
+									<div class="list_matter_right_top">
+										<span style="color:#EF8F34">
+											[` +
+							result[i].platformName + `]
+										</span>
+										<span>
+											` + result[i].name +
+							`
+										</span>
+					
+									</div>
+									<div class="list_matter_right_matter">
+										<span>
+											原价 ￥` +
+							result[i].originalPrice +
+							`
+										</span>
+									</div>
+									<div class="list_matter_right_bottom">
+										<span>
+											￥` +
+							result[i].price +
+							`
+										</span>
+										<span class="soldout">
+											已售<span>` + result[i].saleNumStr +
+							`</span>件
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="list_remark">
+								<span>
+									推荐点评：<span>` +
+							result[i].buyUserRating +
+							`</span>
+								</span>
+								<span class="mui-icon mui-icon-arrowright"></span>
+							</div>
+							<div class="list_recommend">
+								<span>
+									推荐买手：<span>` +
+							buyUserName + `</span>
+								</span>
+							</div>
+						</div>
+					</li>
+				 `
+
+					}
+					list.innerHTML = domStr
+					// setInterval(countDown,1000)
+					for (var i = 0; i < list.children.length; i++) {
+						var show = list.children[i].getElementsByClassName("show")[0]
+						dao(show)
+					}
+				})
+			}
+
+			function dao(show) {
+				var spans = show.getElementsByTagName("span");
+				var future = new Date("2020-09-30 15:12:20");
+				var timer = null;
+				timer = setInterval(function() {
+					shi()
+				}, 1000)
+
+				function shi() {
+					var date = new Date();
+					var cha = future - date;
+					if (cha <= 0) {
+						show.innerHTML = "活动结束"
+						clearInterval(timer)
+						return;
+					}
+					var s = parseInt(cha / 1000 % 60);
+					var f = parseInt(cha / 1000 / 60 % 60);
+					var h = parseInt(cha / 1000 / 60 / 60 % 24);
+					var t = parseInt(cha / 1000 / 60 / 60 / 24);
+					s = s < 10 ? "0" + s : s;
+					f = f < 10 ? "0" + f : f;
+					h = h < 10 ? "0" + h : h;
+					spans[0].innerHTML = t + "天";
+					spans[1].innerHTML = h + ":";
+					spans[2].innerHTML = f + ":";
+					spans[3].innerHTML = s;
+				}
+			}
+
+
+		</script>
+
+	</body>
+
+
+</html>
