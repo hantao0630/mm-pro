@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>买手搜索</title>
+		
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/network.js"></script>
+		<script src="../../js/utils.js"></script>
+				
+		<link rel="stylesheet" type="text/css" href="css/buyer_search.css"/>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</head>
+
+	<body style="background-color: #fff;">
+		<header class="mui-bar mui-bar-nav buyer-header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<input id="buyer-search-input" type="search" name="" required="" placeholder="搜索您要查找的买手" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN">
+			<button type="button" id="buyer-search-submit">搜索</button>
+		</header>
+		<div class="buyer-search-term">
+			<p class="search-term-titone">搜索条件</p>
+			<p class="search-term-titow">
+				<span>评分较高</span>
+				<span>省钱最多</span>
+				<span>最新推荐</span>
+			</p>
+		</div>
+		<div class="buyer-content">
+			<ul class="buyer-cont" id="buyercont">
+				<li>
+					<div class="buyer-cont-top">
+						<img src="../../images/ren.png" >
+						<p class="lists-title">
+							<span>东方不败
+							</span>
+							<span>已推荐商品共计省钱1232元</span>
+						</p>
+						<span class="concern" id="concern">已关注</span>
+						<span class="cancel" id="cancel">取消关注</span>
+					</div>
+					<div class="buyer-cont-bottom">
+						<p><img src="../../images/jian@2x(2).png" >最新推荐</p>
+						<div class="buyer-conbot">
+							<div class="buyer-cons">
+								<img src="../../images/shouna.png" >
+								<span>收纳罐收纳桶收纳四格米桶杂粮五谷桶</span>
+							</div>
+							<div class="buyer-cons">
+								<img src="../../images/shouna.png" >
+								<span>收纳罐收纳桶收纳四格米桶杂粮五谷桶</span>
+							</div>
+							<div class="buyer-cons">
+								<img src="../../images/shouna.png" >
+								<span>收纳罐收纳桶收纳四格米桶杂粮五谷桶</span>
+							</div>
+						</div>
+					</div>
+				</li>
+				
+				
+			</ul>
+		</div>
+	</body>
+	
+	<script src="js/buyer_search.js" type="text/javascript" charset="utf-8"></script>
+</html>
